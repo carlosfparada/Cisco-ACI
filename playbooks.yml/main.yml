@@ -1,0 +1,12 @@
+---
+
+- name: Cisco APIC controller configuration and queries
+  hosts: apic,epg
+  connection: local
+  gather_facts: no
+  
+  tasks:
+  - include_vars: ../defaults/main.yml
+
+  handlers:
+    - include_tasks: ../tasks/main.yml
