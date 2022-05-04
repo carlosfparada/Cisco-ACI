@@ -14,7 +14,7 @@
     validate_certs: "{{ aci_validate_certs }}"
   tags: [always]
 
-- name: bind EPG to contract
+- name: Bind EPG to contract
   cisco.aci.aci_epg_to_contract: 
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"

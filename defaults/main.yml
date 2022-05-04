@@ -8,7 +8,7 @@ aci_epg_state: present
 # needed for reverse engineering
 tower_host: "https://127.0.0.1/"
 tower_username: admin
-tower_password: changeme
+tower_password: Rfc1918!
 aci_tower_inventory: aci-reverse
 aci_validate_certs: no
 
