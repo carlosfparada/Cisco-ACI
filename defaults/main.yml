@@ -53,3 +53,15 @@ aci_bridgedomains:
     vrf: vrf_g_1
     subnets:
       - gateway: 10.202.10.1
+
+aci_epg:
+  epg: epg_b1
+  ap: ap_blue_web
+  bd: blue_web
+  contracts:
+    - contract: web
+      contract_type: provider
+      priority: level2
+      state: present
+  description: EPG blue one
+  tenant: blue
