@@ -8,4 +8,4 @@
   tasks:
   - include_vars: ../defaults/main.yml
   
-  - include_tasks: ../tasks/epg_reverse.yml
+  - include_tasks: ../tasks/epgreverse.yml
