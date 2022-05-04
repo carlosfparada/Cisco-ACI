@@ -1,6 +1,6 @@
 ---
 
-- name: tenant configuration
+- name: Tenant configuration
   cisco.aci.aci_tenant:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
@@ -15,13 +15,13 @@
   register: _aci_tenant_result
   tags: [always]
 
-- name: print tenant state
+- name: Debug tenant state
   debug: 
     var: _aci_tenant_result
     verbosity: 2
   tags: [always]
 
-- name: application profile loop
+- name: Application profile loop
   include_tasks: app_profile_inner.yml
   loop: "{{ aci_tenants }}"
   loop_control: 

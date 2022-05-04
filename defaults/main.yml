@@ -10,7 +10,7 @@ tower_host: "https://127.0.0.1/"
 tower_username: admin
 tower_password: changeme
 aci_tower_inventory: aci-reverse
-aci_validate_certs: yes
+aci_validate_certs: no
 
 # from Controller
 aci_tenants:
