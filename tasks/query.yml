@@ -43,7 +43,7 @@
     tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
     state: "query"
     validate_certs: "{{ aci_validate_certs }}"
-  loop: "{{ aci_bridgedomains | dict2items }}"
+  loop: "{{ aci_bridgedomains }}"
   register: _bds
   tags: [always]
 
