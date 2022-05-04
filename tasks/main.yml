@@ -16,10 +16,10 @@
   tags: [bd, apic]
 
 - include_tasks: epg.yml
-  tags: [never, epg]
+  tags: [epg]
 
 - include_tasks: query.yml
-  tags: [never, query]
+  tags: [query]
 
 - include_tasks: epgreverse.yml
-  tags: [never, reverse]
+  tags: [reverse]
