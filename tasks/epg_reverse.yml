@@ -1,7 +1,7 @@
 ---
 # get EPG configuration from APIC and push back to Ansible Tower
 
-- name: query EPG configuration
+- name: Query EPG configuration
   cisco.aci.aci_epg:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
@@ -18,7 +18,7 @@
 
 - name: Ansible Tower push back
   block:
-  - name: make sure about inventory itself on Tower 
+  - name: Make sure about inventory itself on Tower 
     awx.awx.tower_inventory:
       tower_host: "{{ tower_host }}"
       tower_username: "{{ tower_username }}"
@@ -29,7 +29,7 @@
       organization: Default 
     tags: [always]
 
-  - name: push back EPGs to Ansible Tower
+  - name: Push back EPGs to Ansible Tower
     awx.awx.tower_host:
       tower_host: "{{ tower_host }}"
       tower_username: "{{ tower_username }}"

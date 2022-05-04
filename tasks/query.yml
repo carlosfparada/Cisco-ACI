@@ -1,6 +1,6 @@
 ---
 
-- name: query tenant configuration
+- name: Query tenant configuration
   cisco.aci.aci_tenant: 
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
