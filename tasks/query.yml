@@ -13,3 +13,20 @@
 - debug:
     var: _tenants
   tags: [always]
+
+- name: Query VRF configuration
+  cisco.aci.aci_bd: 
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_ssh_pass }}"
+    vrf: "{{ item.key }}"
+    tenant: "{{ item.value.tenant }}"
+    state: "query"
+    validate_certs: "{{ aci_validate_certs }}"
+  loop: "{{ aci_vrfs | dict2items }}"
+  register: _vrfs
+  tags: [always]
+
+- debug:
+    var: _vrfs
+  tags: [always]
