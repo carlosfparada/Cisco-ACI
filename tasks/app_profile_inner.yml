@@ -1,6 +1,6 @@
 ---
 
-- name: application profile configuration
+- name: Application profile configuration
   cisco.aci.aci_ap:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
