@@ -19,7 +19,7 @@
 - name: Ansible Tower push back
   block:
   - name: Make sure about inventory itself on Tower 
-    awx.awx.tower_inventory:
+    awx.awx.inventory:
       controller_host: "{{ tower_host }}"
       controller_username: "{{ tower_username }}"
       controller_password: "{{ tower_password }}"
@@ -33,7 +33,7 @@
     tags: [always]
 
   - name: Push back EPGs to Ansible Tower
-    awx.awx.tower_host:
+    awx.awx.host:
       controller_host: "{{ tower_host }}"
       controller_username: "{{ tower_username }}"
       controller_password: "{{ tower_password }}"
