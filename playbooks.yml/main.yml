@@ -1,7 +1,7 @@
 ---
 
 - name: Cisco APIC controller configuration and queries
-  hosts: apic,epg
+  hosts: apic
   connection: local
   gather_facts: no
   
