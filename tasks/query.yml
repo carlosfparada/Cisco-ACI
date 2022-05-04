@@ -10,7 +10,8 @@
   register: _tenants
   tags: [always]
 
-- debug:
+- name: Debug Tenants
+  debug:
     var: _tenants
   tags: [always]
 
@@ -27,7 +28,8 @@
   register: _vrfs
   tags: [always]
 
-- debug:
+- name: Debug VRFs
+  debug:
     var: _vrfs
   tags: [always]
 
@@ -45,6 +47,7 @@
   register: _bds
   tags: [always]
 
-- debug:
+- name: Debug BDs
+  debug:
     var: _bds
   tags: [always]
