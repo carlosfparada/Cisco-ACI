@@ -20,9 +20,12 @@
   block:
   - name: Make sure about inventory itself on Tower 
     awx.awx.tower_inventory:
-      tower_host: "{{ tower_host }}"
-      tower_username: "{{ tower_username }}"
-      tower_password: "{{ tower_password }}"
+      controller_host: "{{ tower_host }}"
+      controller_username: "{{ tower_username }}"
+      controller_password: "{{ tower_password }}"
+      #tower_host: "{{ tower_host }}"
+      #tower_username: "{{ tower_username }}"
+      #tower_password: "{{ tower_password }}"
       validate_certs: no
       name: "{{ aci_tower_inventory }}"
       description: managed by Ansible reverse engineering template
@@ -31,9 +34,12 @@
 
   - name: Push back EPGs to Ansible Tower
     awx.awx.tower_host:
-      tower_host: "{{ tower_host }}"
-      tower_username: "{{ tower_username }}"
-      tower_password: "{{ tower_password }}"
+      controller_host: "{{ tower_host }}"
+      controller_username: "{{ tower_username }}"
+      controller_password: "{{ tower_password }}"
+      #tower_host: "{{ tower_host }}"
+      #tower_username: "{{ tower_username }}"
+      #tower_password: "{{ tower_password }}"
       validate_certs: no
       name: "{{ item.fvAEPg.attributes.name }}"
       description: "{{ item.fvAEPg.attributes.descr | default(omit) }}"
