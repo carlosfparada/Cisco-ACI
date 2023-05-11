@@ -7,19 +7,13 @@
     verbosity: 2
 
 - include_tasks: tenant.yml
-  tags: [tenant, apic]
 
 - include_tasks: vrf.yml
-  tags: [vrf, apic]
 
 - include_tasks: bd.yml
-  tags: [bd, apic]
 
 - include_tasks: epg.yml
-  tags: [epg]
 
 - include_tasks: query.yml
-  tags: [query]
 
 # - include_tasks: epgreverse.yml
-#   tags: [reverse]

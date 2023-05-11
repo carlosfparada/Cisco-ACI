@@ -14,12 +14,10 @@
   loop: "{{ aci_bridgedomains }}"
   loop_control:
     label: "{{ item.name }}"
-  tags: [always]
 
 - name: bridgedomain include subnet loop
-  include_tasks: bd_inner.yml
+  include_tasks: subnet.yml
   loop: "{{ aci_bridgedomains }}"
   loop_control: 
     label: "{{ aci_bridgedomain.name }}"
     loop_var: aci_bridgedomain
-  tags: [always]

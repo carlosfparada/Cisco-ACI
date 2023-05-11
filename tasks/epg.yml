@@ -12,7 +12,6 @@
     bd: "{{ aci_epg.bd }}"
     state: "{{ aci_epg_state }}"
     validate_certs: "{{ aci_validate_certs }}"
-  tags: [always]
 
 - name: Bind EPG to contract
   cisco.aci.aci_epg_to_contract: 
@@ -31,4 +30,3 @@
   loop_control:
     label: "{{ item.contract }} ==> {{ item.state | default('present') }}"
   when: aci_epg.contracts is defined and aci_epg_state == 'present'
-  tags: [always]

@@ -13,18 +13,15 @@
   loop_control: 
     label: "{{ item.name }}"
   register: _aci_tenant_result
-  tags: [always]
 
 - name: Debug tenant state
   debug: 
     var: _aci_tenant_result
     verbosity: 2
-  tags: [always]
 
 - name: Application profile loop
-  include_tasks: app_profile_inner.yml
+  include_tasks: ap.yml
   loop: "{{ aci_tenants }}"
   loop_control: 
     loop_var: tenant
     label: "{{ tenant.name }}"
-  tags: [always]

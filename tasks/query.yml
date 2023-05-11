@@ -8,12 +8,10 @@
     state: query
     validate_certs: "{{ aci_validate_certs }}"
   register: _tenants
-  tags: [always]
 
 - name: Debug Tenants
   debug:
     var: _tenants
-  tags: [always]
 
 - name: Query VRF configuration
   cisco.aci.aci_bd: 
@@ -26,12 +24,10 @@
     validate_certs: "{{ aci_validate_certs }}"
   loop: "{{ aci_vrfs | dict2items }}"
   register: _vrfs
-  tags: [always]
 
 - name: Debug VRFs
   debug:
     var: _vrfs
-  tags: [always]
 
 - name: Query BD configuration
   cisco.aci.aci_bd: 
@@ -45,9 +41,7 @@
     validate_certs: "{{ aci_validate_certs }}"
   loop: "{{ aci_bridgedomains }}"
   register: _bds
-  tags: [always]
 
 - name: Debug BDs
   debug:
     var: _bds
-  tags: [always]
