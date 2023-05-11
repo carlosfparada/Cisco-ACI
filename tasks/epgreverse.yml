@@ -9,12 +9,10 @@
     state: query
     validate_certs: "{{ aci_validate_certs }}"
   register: _epg_result
-  tags: [always]
 
 - debug:
     var: _epg_result
     verbosity: 2
-  tags: [always]
 
 - name: Ansible Tower push back
   block:
@@ -30,7 +28,6 @@
       name: "{{ aci_tower_inventory }}"
       description: managed by Ansible reverse engineering template
       organization: Default 
-    tags: [always]
 
   - name: Push back EPGs to Ansible Tower
     awx.awx.host:
@@ -51,4 +48,3 @@
     loop: "{{ _epg_result.current }}"
     loop_control:
       label: "{{ item.fvAEPg.attributes.name }}"
-    tags: [always]

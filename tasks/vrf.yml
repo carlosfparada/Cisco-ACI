@@ -14,10 +14,8 @@
   loop_control: 
     label: "{{ item.key }}"
   register: _aci_vrf_result
-  tags: [always]
 
 - name: Debug tenant state
   debug: 
     var: _aci_vrf_result
     verbosity: 2
-  tags: [always]

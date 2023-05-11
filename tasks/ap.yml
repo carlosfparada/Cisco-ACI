@@ -12,4 +12,3 @@
   loop: "{{ tenant.aps }}"
   loop_control:
     label: "{{ item.name }}"
-  tags: [always]
