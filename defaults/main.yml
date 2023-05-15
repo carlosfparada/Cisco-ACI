@@ -28,6 +28,9 @@ aci_vrfs:
   vrf_b_1:
     tenant: blue
     description: VRF blue one
+  vrf_b_2:
+    tenant: blue
+    description: VRF blue one
   vrf_g_1:
     tenant: green
     description: VRF green one
@@ -40,6 +43,8 @@ aci_bridgedomains:
       mask: 28
       name: sub_blue_web_1
     - gateway: 10.201.1.1
+      name: sub_blue_web_2
+    - gateway: 10.201.1.2
       name: sub_blue_web_2
   - name: green_web
     vrf: vrf_g_1
