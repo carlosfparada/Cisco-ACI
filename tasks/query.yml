@@ -63,7 +63,7 @@
 
 - name: Debug interface
   debug:
-    var: _interface
+    var: _l3
 
 - name: Query all fabric interfaces
   cisco.aci.aci_interface_config:
