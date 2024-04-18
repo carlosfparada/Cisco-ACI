@@ -61,7 +61,7 @@
     state: query
   register: _l3
 
-- name: Debug interface
+- name: Debug l3
   debug:
     var: _l3
 
