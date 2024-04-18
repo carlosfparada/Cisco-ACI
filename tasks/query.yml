@@ -90,5 +90,8 @@
     path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
     #path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1]/dbgEtherStats.json
     #path: /api/class/rmonEtherStats.json
+  register: _interface_stats
 
-
+- name: Debug interface stats
+  debug:
+    var: _interface_stats
