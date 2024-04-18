@@ -65,15 +65,15 @@
   debug:
     var: _l3
 
-- name: Query all fabric interfaces
-  cisco.aci.aci_interface_config:
-    host: "{{ ansible_host }}"
-    username: "{{ ansible_user }}"
-    password: "{{ ansible_ssh_pass }}"
-    port_type: fabric
-    state: query
-  register: _interface
+# - name: Query all fabric interfaces
+#   cisco.aci.aci_interface_config:
+#     host: "{{ ansible_host }}"
+#     username: "{{ ansible_user }}"
+#     password: "{{ ansible_ssh_pass }}"
+#     port_type: fabric
+#     state: query
+#   register: _interface
 
-- name: Debug interfaces
-  debug:
-    var: _interface
+# - name: Debug interfaces
+#   debug:
+#     var: _interface
