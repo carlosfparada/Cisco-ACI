@@ -72,11 +72,12 @@
     state: query
   register: _nodes
 
-- name: Debug interfaces
+- name: Debug fabric nodes
   debug:
     var: _nodes
 
 # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
+# Make sure you Add access to security domain mgmt (https://community.cisco.com/t5/application-centric-infrastructure/cisco-aci-rest-api-monitoring/m-p/4473193#M11172)
 - name: Query interface stats
   cisco.aci.aci_rest:
     host: "{{ ansible_host }}"
