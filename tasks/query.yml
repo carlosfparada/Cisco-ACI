@@ -47,7 +47,7 @@
     var: _bds
 
 - name: Query l2
-  cisco.aci.aci_l2out_interface:
+  cisco.aci.aci_l2out:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
