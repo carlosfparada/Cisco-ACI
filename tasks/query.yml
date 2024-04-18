@@ -57,12 +57,24 @@
     interface: 1/1
     #port_type: fabric
     state: query
-
   register: _interface
 
 - name: Debug interfaces
   debug:
     var: _interface
+
+- name: Query fabric nodes
+  cisco.aci.aci_fabric_node:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_ssh_pass }}"
+    validate_certs: "{{ aci_validate_certs }}"
+    state: query
+  register: _nodes
+
+- name: Debug interfaces
+  debug:
+    var: _nodes
 
 # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
 - name: Query interface stats
