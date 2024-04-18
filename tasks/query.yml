@@ -51,7 +51,7 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
-    tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
+    tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
     # l3out: my_l3out
     # node_profile: my_node_profile
     # interface_profile: my_interface_profile
