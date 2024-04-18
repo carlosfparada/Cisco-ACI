@@ -47,7 +47,7 @@
     var: _bds
 
 - name: Query l2
-  cisco.aci.aci_l3out_interface:
+  cisco.aci.aci_l2out_interface:
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
@@ -65,34 +65,34 @@
   debug:
     var: _l2
 
-- name: Query l3
-  cisco.aci.aci_l3out_interface:
-    host: "{{ ansible_host }}"
-    username: "{{ ansible_user }}"
-    password: "{{ ansible_ssh_pass }}"
-    tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
-    # l3out: my_l3out
-    # node_profile: my_node_profile
-    # interface_profile: my_interface_profile
-    pod_id: 1
-    node_id: 101
-    # path_ep: eth1/12
-    state: query
-  register: _l3
-
-- name: Debug l3
-  debug:
-    var: _l3
-
-# - name: Query all fabric interfaces
-#   cisco.aci.aci_interface_config:
+# - name: Query l3
+#   cisco.aci.aci_l3out_interface:
 #     host: "{{ ansible_host }}"
 #     username: "{{ ansible_user }}"
 #     password: "{{ ansible_ssh_pass }}"
-#     port_type: fabric
+#     tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
+#     # l3out: my_l3out
+#     # node_profile: my_node_profile
+#     # interface_profile: my_interface_profile
+#     pod_id: 1
+#     node_id: 101
+#     # path_ep: eth1/12
 #     state: query
-#   register: _interface
+#   register: _l3
 
-# - name: Debug interfaces
+# - name: Debug l3
 #   debug:
-#     var: _interface
+#     var: _l3
+
+- name: Query all fabric interfaces
+  cisco.aci.aci_interface_config:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_ssh_pass }}"
+    port_type: fabric
+    state: query
+  register: _interface
+
+- name: Debug interfaces
+  debug:
+    var: _interface
