@@ -76,6 +76,7 @@
   debug:
     var: _interface
 
+# https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_rest_module.html#ansible-collections-cisco-aci-aci-rest-module
 # https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/3-x/rest-api-config/b_Cisco_APIC_REST_API_Configuration_Guide_3x/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_01000.html
   # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
 # Make sure you Add access to security domain mgmt 
