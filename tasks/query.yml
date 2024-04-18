@@ -56,7 +56,7 @@
     # node_profile: my_node_profile
     # interface_profile: my_interface_profile
     pod_id: 1
-    node_id: Node-101
+    node_id: 101
     # path_ep: eth1/12
     state: query
   register: _l3
