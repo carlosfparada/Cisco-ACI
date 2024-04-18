@@ -70,8 +70,10 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: "{{ aci_validate_certs }}"
     port_type: fabric
     state: query
+
   register: _interface
 
 - name: Debug interfaces
@@ -83,6 +85,7 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: "{{ aci_validate_certs }}"
     tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
     # l2out: my_l2out
     # node_profile: my_node_profile
