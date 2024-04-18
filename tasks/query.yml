@@ -85,5 +85,5 @@
     validate_certs: "{{ aci_validate_certs }}"
     method: get
     #path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
-    path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json/dbgEtherStats
+    path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1]/dbgEtherStats
 
