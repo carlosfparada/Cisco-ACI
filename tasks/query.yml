@@ -64,42 +64,13 @@
   debug:
     var: _interface
 
-# - name: Query l2
-#   cisco.aci.aci_l2out:
-#     host: "{{ ansible_host }}"
-#     username: "{{ ansible_user }}"
-#     password: "{{ ansible_ssh_pass }}"
-#     validate_certs: "{{ aci_validate_certs }}"
-#     tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
-#     # l2out: my_l2out
-#     # node_profile: my_node_profile
-#     # interface_profile: my_interface_profile
-#     # pod_id: 1
-#     # node_id: 101
-#     # path_ep: eth1/12
-#     state: query
-#   register: _l2
+# https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
+- name: Query interface stats
+  cisco.aci.aci_rest:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_ssh_pass }}"
+    validate_certs: "{{ aci_validate_certs }}"
+    method: post
+    path: /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
 
-# - name: Debug l2
-#   debug:
-#     var: _l2
-
-# - name: Query l3
-#   cisco.aci.aci_l3out_interface:
-#     host: "{{ ansible_host }}"
-#     username: "{{ ansible_user }}"
-#     password: "{{ ansible_ssh_pass }}"
-#     validate_certs: "{{ aci_validate_certs }}"
-#     tenant: "{{ aci_vrfs.vrf_b_1.tenant }}"
-#     # l3out: my_l3out
-#     # node_profile: my_node_profile
-#     # interface_profile: my_interface_profile
-#     # pod_id: 1
-#     # node_id: 101
-#     # path_ep: eth1/12
-#     state: query
-#   register: _l3
-
-# - name: Debug l3
-#   debug:
-#     var: _l3
