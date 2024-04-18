@@ -46,6 +46,19 @@
   debug:
     var: _bds
 
+- name: Query fabric nodes
+  cisco.aci.aci_fabric_node:
+    host: "{{ ansible_host }}"
+    username: "{{ ansible_user }}"
+    password: "{{ ansible_ssh_pass }}"
+    validate_certs: "{{ aci_validate_certs }}"
+    state: query
+  register: _nodes
+
+- name: Debug fabric nodes
+  debug:
+    var: _nodes
+
 - name: Query all fabric interfaces
   cisco.aci.aci_interface_config:
     host: "{{ ansible_host }}"
@@ -62,19 +75,6 @@
 - name: Debug interfaces
   debug:
     var: _interface
-
-- name: Query fabric nodes
-  cisco.aci.aci_fabric_node:
-    host: "{{ ansible_host }}"
-    username: "{{ ansible_user }}"
-    password: "{{ ansible_ssh_pass }}"
-    validate_certs: "{{ aci_validate_certs }}"
-    state: query
-  register: _nodes
-
-- name: Debug fabric nodes
-  debug:
-    var: _nodes
 
 # https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/3-x/rest-api-config/b_Cisco_APIC_REST_API_Configuration_Guide_3x/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_01000.html
   # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
