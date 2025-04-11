@@ -5,8 +5,8 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: no
     state: query
-    validate_certs: "{{ aci_validate_certs }}"
   register: _tenants
 
 - name: Debug Tenants
@@ -18,10 +18,10 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: no
     vrf: "{{ item.key }}"
     tenant: "{{ item.value.tenant }}"
     state: "query"
-    validate_certs: "{{ aci_validate_certs }}"
   loop: "{{ aci_vrfs | dict2items }}"
   register: _vrfs
 
@@ -34,11 +34,11 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: no
     bd: "{{ item.name }}"
     vrf: "{{ item.vrf }}"
     tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
     state: "query"
-    validate_certs: "{{ aci_validate_certs }}"
   loop: "{{ aci_bridgedomains }}"
   register: _bds
 
@@ -51,7 +51,7 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
-    validate_certs: "{{ aci_validate_certs }}"
+    validate_certs: no
     state: query
   register: _nodes
 
@@ -64,7 +64,7 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
-    validate_certs: "{{ aci_validate_certs }}"
+    validate_certs: no
     #pod_id: 1
     node: 101
     interface: 1/1
@@ -86,7 +86,7 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
-    validate_certs: "{{ aci_validate_certs }}"
+    validate_certs: no
     method: get
     path: "{{ item }}"
   loop:

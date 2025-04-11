@@ -5,19 +5,20 @@
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: no
     tenant: "{{ aci_epg.tenant }}"
     ap: "{{ aci_epg.ap }}"
     epg: "{{ aci_epg.epg | default(inventory_hostname)  }}"
     description: "{{ aci_epg.description | default(omit) }}"
     bd: "{{ aci_epg.bd }}"
     state: "{{ aci_epg_state }}"
-    validate_certs: "{{ aci_validate_certs }}"
 
 - name: Bind EPG to contract
   cisco.aci.aci_epg_to_contract: 
     host: "{{ ansible_host }}"
     username: "{{ ansible_user }}"
     password: "{{ ansible_ssh_pass }}"
+    validate_certs: no
     epg: "{{ aci_epg.epg | default(inventory_hostname)  }}"
     contract_type: "{{ item.contract_type | default('provider') }}"
     contract: "{{ item.contract }}"
@@ -25,7 +26,6 @@
     tenant: "{{ aci_epg.tenant }}"
     ap: "{{ aci_epg.ap }}"
     state: "{{ item.state | default(omit) }}"
-    validate_certs: "{{ aci_validate_certs }}"
   loop: "{{ aci_epg.contracts }}"
   loop_control:
     label: "{{ item.contract }} ==> {{ item.state | default('present') }}"
