@@ -11,7 +11,7 @@
     epg: "{{ aci_epg.epg | default(inventory_hostname)  }}"
     description: "{{ aci_epg.description | default(omit) }}"
     bd: "{{ aci_epg.bd }}"
-    state: "{{ aci_epg_state }}"
+    state: present
 
 - name: Bind EPG to contract
   cisco.aci.aci_epg_to_contract: 
@@ -29,4 +29,4 @@
   loop: "{{ aci_epg.contracts }}"
   loop_control:
     label: "{{ item.contract }} ==> {{ item.state | default('present') }}"
-  when: aci_epg.contracts is defined and aci_epg_state == 'present'
+  when: aci_epg.contracts is defined

@@ -1,17 +1,6 @@
 ---
 
-aci_tenant_state: present
-aci_vrf_state: present
-aci_bd_state: present
-aci_epg_state: present
-
-# needed for reverse engineering
-tower_host: "https://172.16.1.34"
-tower_username: admin
-tower_password: Rfc1918!
-aci_tower_inventory: reverse-aci
-
-# from Controller
+# Provisioning
 aci_tenants:
   - name: blue
     aps: 

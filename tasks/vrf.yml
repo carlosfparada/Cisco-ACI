@@ -9,7 +9,7 @@
     vrf: "{{ item.key }}"
     tenant: "{{ item.value.tenant }}"
     description: "{{ item.value.description | default(omit) }}"
-    state: "{{ aci_vrf_state }}"
+    state: present
   loop: "{{ aci_vrfs | dict2items }}"
   loop_control: 
     label: "{{ item.key }}"

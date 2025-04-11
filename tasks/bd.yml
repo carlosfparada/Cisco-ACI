@@ -10,7 +10,7 @@
     vrf: "{{ item.vrf }}"
     tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
     description: "{{ item.description | default(omit) }}"
-    state: "{{ aci_bd_state }}"
+    state: present
   loop: "{{ aci_bridgedomains }}"
   loop_control:
     label: "{{ item.name }}"
