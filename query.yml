@@ -1,0 +1,106 @@
+---
+
+- name: Cisco APIC controller Query configuration
+  hosts: apic
+  connection: local
+  gather_facts: no
+  vars_files: vars/main.yml  
+  tasks:  
+    - name: Query tenant configuration
+      cisco.aci.aci_tenant: 
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        state: query
+      register: _tenants
+
+    - name: Debug Tenants
+      debug:
+        var: _tenants
+
+    - name: Query VRF configuration
+      cisco.aci.aci_bd: 
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        vrf: "{{ item.key }}"
+        tenant: "{{ item.value.tenant }}"
+        state: "query"
+      loop: "{{ aci_vrfs | dict2items }}"
+      register: _vrfs
+
+    - name: Debug VRFs
+      debug:
+        var: _vrfs
+
+    - name: Query BD configuration
+      cisco.aci.aci_bd: 
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        bd: "{{ item.name }}"
+        vrf: "{{ item.vrf }}"
+        tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
+        state: "query"
+      loop: "{{ aci_bridgedomains }}"
+      register: _bds
+
+    - name: Debug BDs
+      debug:
+        var: _bds
+
+    - name: Query fabric nodes
+      cisco.aci.aci_fabric_node:
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        state: query
+      register: _nodes
+
+    - name: Debug fabric nodes
+      debug:
+        var: _nodes
+
+    - name: Query all fabric interfaces
+      cisco.aci.aci_interface_config:
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        #pod_id: 1
+        node: 101
+        interface: 1/1
+        #port_type: fabric
+        state: query
+      register: _interface
+
+    - name: Debug interfaces
+      debug:
+        var: _interface
+
+    # https://docs.ansible.com/ansible/latest/collections/cisco/aci/aci_rest_module.html#ansible-collections-cisco-aci-aci-rest-module
+    # https://www.cisco.com/c/en/us/td/docs/switches/datacenter/aci/apic/sw/3-x/rest-api-config/b_Cisco_APIC_REST_API_Configuration_Guide_3x/b_Cisco_APIC_REST_API_Configuration_Guide_chapter_01000.html
+      # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
+    # Make sure you Add access to security domain mgmt 
+      # https://community.cisco.com/t5/application-centric-infrastructure/cisco-aci-rest-api-monitoring/m-p/4473193#M11172
+    - name: Query interface stats
+      cisco.aci.aci_rest:
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        method: get
+        path: "{{ item }}"
+      loop:
+        - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
+        - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1]/dbgEtherStats.json
+        - /api/class/rmonEtherStats.json
+      register: _interface_stats
+
+    - name: Debug interface stats
+      debug:
+        var: _interface_stats

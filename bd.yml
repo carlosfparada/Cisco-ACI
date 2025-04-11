@@ -1,0 +1,29 @@
+---
+
+- name: Cisco APIC controller Bridge Domain configuration
+  hosts: apic
+  connection: local
+  gather_facts: no
+  vars_files: vars/main.yml
+  tasks:
+    - name: Bridge Domain configuration
+      cisco.aci.aci_bd:
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no
+        bd: "{{ item.name }}"
+        vrf: "{{ item.vrf }}"
+        tenant: "{{ aci_vrfs[item.vrf]['tenant'] }}"
+        description: "{{ item.description | default(omit) }}"
+        state: present
+      loop: "{{ aci_bridgedomains }}"
+      loop_control:
+        label: "{{ item.name }}"
+
+    - name: Bridge Domain include Subnet loop
+      include_tasks: subnet.yml
+      loop: "{{ aci_bridgedomains }}"
+      loop_control: 
+        label: "{{ aci_bridgedomain.name }}"
+        loop_var: aci_bridgedomain

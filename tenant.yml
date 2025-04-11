@@ -1,0 +1,33 @@
+---
+
+- name: Cisco APIC controller Tenant configuration
+  hosts: apic
+  connection: local
+  gather_facts: no
+  vars_files: vars/main.yml  
+  tasks:
+    - name: Tenant configuration
+      cisco.aci.aci_tenant:
+        host: "{{ ansible_host }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_ssh_pass }}"
+        validate_certs: no 
+        tenant: "{{ item.name }}"
+        description: "{{ item.description | default(omit) }}"
+        state: present
+      loop: "{{ aci_tenants }}"
+      loop_control: 
+        label: "{{ item.name }}"
+      register: _aci_tenant_result
+
+    - name: Debug tenant state
+      debug: 
+        var: _aci_tenant_result
+        verbosity: 2
+
+    - name: Application Profile loop
+      include_tasks: ap.yml
+      loop: "{{ aci_tenants }}"
+      loop_control: 
+        loop_var: tenant
+        label: "{{ tenant.name }}"
