@@ -87,20 +87,20 @@
       # https://{{URL}}/api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
     # Make sure you Add access to security domain mgmt 
       # https://community.cisco.com/t5/application-centric-infrastructure/cisco-aci-rest-api-monitoring/m-p/4473193#M11172
-    - name: Query interface stats
-      cisco.aci.aci_rest:
-        host: "{{ ansible_host }}"
-        username: "{{ ansible_user }}"
-        password: "{{ ansible_ssh_pass }}"
-        validate_certs: no
-        method: get
-        path: "{{ item }}"
-      loop:
-        - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
-        - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1]/dbgEtherStats.json
-        - /api/class/rmonEtherStats.json
-      register: _interface_stats
+    # - name: Query interface stats
+    #   cisco.aci.aci_rest:
+    #     host: "{{ ansible_host }}"
+    #     username: "{{ ansible_user }}"
+    #     password: "{{ ansible_ssh_pass }}"
+    #     validate_certs: no
+    #     method: get
+    #     path: "{{ item }}"
+    #   loop:
+    #     - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1].json
+    #     - /api/node/mo/topology/pod-1/node-101/sys/phys-[eth1/1]/dbgEtherStats.json
+    #     - /api/class/rmonEtherStats.json
+    #   register: _interface_stats
 
-    - name: Debug interface stats
-      debug:
-        var: _interface_stats
+    # - name: Debug interface stats
+    #   debug:
+    #     var: _interface_stats
